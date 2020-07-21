@@ -1,0 +1,22 @@
+<% if @article.errors.any? %>
+  <h2>The following errors prevented the article from being saved</h2> 
+  <ul>
+    <% @article.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+<%=form_with(model: @article,local:true) do |f| %>    <%#local:true is for standard http trquest ,remote request like ajax can also be sent%>
+    <p>
+    <%=f.label:Title%>
+    <br>
+    <%=f.text_field :title%>
+    </p>
+    <%=f.label:Description%>
+    <br>
+    <%=f.text_area :description%>
+
+    <br>
+    <br>
+    <%=f.submit%>
+<%end%>
