@@ -1,47 +1,21 @@
-Hello world
+<div id="page-content">
+  <div class="container" id="home-container">
+    <div class="jumbotron text-center text-white text-bold">
+      <h1 class="display-4">Articles</h1>
+      <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+      <hr class="my-4">
 
-<style>
-h1 {
-  font-size: 60px;
-  text-align: center;
-}
+      <p class="lead">
+        <a class="btn btn-success btn-lg" href="#" role="button">Sign up</a>
+      </p>
+    </div>
+  </div>
+</div>
 
-p, li {
-  font-size: 16px;    
-  line-height: 2;
-  letter-spacing: 1px;
-}html {
-  background-color: #00539F;
-}
-body {
-  width: 600px;
-  margin: 0 auto;
-  background-color: #FF9500;
-  padding: 0 20px 20px 20px;
-  border: 5px solid black;
-}
-h1 {
-  margin: 0;
-  padding: 20px 0;    
-  color: #00539F;
-  text-shadow: 3px 3px 1px black;
-}
-</style>
-
-<p>
-At Mozilla, we’re a global community of
-    </p>
-<ul> 
-  <li>technologists</li>
-  <li>thinkers</li>
-  <li>builders</li>
-</ul>
-
-<p>working together ... </p>
-
-
-<%=link_to 'Articles Listing',articles_path%>
-
-<%=link_to 'About Page',about_path%>
-
-
+  <footer id="sticky-footer" class="py-4 bg-dark text-white">
+    <div class="container text-center">
+      <small>Copyright &copy;</small>
+      <%=link_to 'Articles Listing',articles_path,class: "text-white" %> |
+      <%=link_to 'About Page',about_path ,class: "text-white" %>
+    </div>
+  </footer>
