@@ -12,6 +12,7 @@ class ArticlesController < ApplicationController
     end
     def create
         @article=Article.new(article_params_whitelist)             #  render plain:@article.inspect                      display entered data
+        @article.user=User.first
         if @article.save
             flash[:notice] = "Article was created successfully."   #flash hashing is done key value pair
             redirect_to @article
