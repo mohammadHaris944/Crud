@@ -1,9 +1,16 @@
-
 <h1 class="text-center mt-4">Showing all articles </h1>
+<div class="flickr_pagination">
+  <%= will_paginate @articles, :container => false %>
+</div>
+<%= render 'article' %>
+<div class="flickr_pagination mb-4">
+  <%= will_paginate @articles, :container => false %>
+</div> 
 
-<%= render 'article'%>
-
-
-
-
-
+<footer id="sticky-footer" class="py-4 bg-dark text-white">
+    <div class="container text-center">
+      <small>Copyright &copy;</small>
+      <%=link_to 'Articles Listing',articles_path,class: "text-white" %> |
+      <%=link_to 'About Page',about_path ,class: "text-white" %>
+    </div>
+  </footer>

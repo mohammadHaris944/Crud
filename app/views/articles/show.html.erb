@@ -3,18 +3,21 @@
 
 
 <div class="container">
-  
     <div class="row justify-content-md-center">
         <div class="col-8 mt-4">
             <div class="card text-center shadow mb-5 bg-white rounded">
                  <div class="card-header font-italic">
                   by <%=  @article.user.username if @article.user%>
+                       <%= link_to gravatar_for(@article.user), user_path(@article.user) %>
                 </div>
                 <div class="card-body">
                     <h5 class="card-title text-left"><%=@article.title%></h5>
                     <h6 class="card-subtitle mb-2 text-muted text-left"><%=simple_format(@article.description)%></h6>
-                    <%=link_to 'Edit',edit_article_path(@article), class: "btn btn-outline-info"%>    <!--you can check it from rails routes --expanded  in prefix path is written-->
-                    <%=link_to 'Delete',article_path(@article), class: "btn btn-outline-danger" ,method: :delete,data: {confirm: "Are You sure?"}%>  <!--- here method shows delete request ,i we don't specified method name it will take as Get request and show currently selected item--->               
+                    <% if logged_in? && @article.user == current_user %>
+
+                        <%=link_to 'Edit',edit_article_path(@article), class: "btn btn-outline-info"%>    <!--you can check it from rails routes --expanded  in prefix path is written-->
+                        <%=link_to 'Delete',article_path(@article), class: "btn btn-outline-danger" ,method: :delete,data: {confirm: "Are You sure?"}%>  <!--- here method shows delete request ,i we don't specified method name it will take as Get request and show currently selected item--->               
+                    <%end%>
                 </div>
                   <div class="card-footer text-muted">
                     <small>Created <%= time_ago_in_words(@article.created_at) %> ago,
@@ -27,5 +30,3 @@
 
 </div>
 
-<br>
-<p ><%= link_to 'Create New Article',new_article_path%><p>

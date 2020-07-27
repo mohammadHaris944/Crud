@@ -1,6 +1,33 @@
-<h1 class="text-center mt-4"><%=@user.username%>'s Profile</h1>
+<div id="page-content">
 
-<%= gravatar_for @user, size: 200 %>
+  <div id="container">
+   <h1 class="text-center mt-4"><%=@user.username%>'s Profile</h1>
+   <%= gravatar_for @user, size: 200 %>
+   
+   <% if logged_in? && @user == current_user %>
+    <div class="text-center mt-4">
+   
+      <%= link_to "Edit your profile", edit_user_path(@user), class: "btn btn-outline-info" %>
+    </div>
+  <%end%> 
 
-<h1 class="text-center mt-4">Articles</h1>
-<%= render 'articles/article'%>
+   <h1 class="text-center mt-4">Articles</h1>
+   <div class="flickr_pagination">
+      <%= will_paginate @articles, :container => false %>
+    </div>
+
+
+    <%= render 'articles/article'%>
+
+    <div class="flickr_pagination">
+      <%= will_paginate @articles, :container => false %>
+    </div>
+    <footer id="sticky-footer" class="py-4 bg-dark text-white">
+      <div class="container text-center">
+        <small>Copyright &copy;</small>
+        <%=link_to 'Articles Listing',articles_path,class: "text-white" %> |
+        <%=link_to 'About Page',about_path ,class: "text-white" %>
+      </div>
+    </footer>
+  </div>
+</div>
