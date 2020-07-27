@@ -13,7 +13,7 @@
                 <div class="card-body">
                     <h5 class="card-title text-left"><%=@article.title%></h5>
                     <h6 class="card-subtitle mb-2 text-muted text-left"><%=simple_format(@article.description)%></h6>
-                    <% if logged_in? && @article.user == current_user %>
+                    <% if logged_in? && (@article.user == current_user || current_user.admin?) %>
 
                         <%=link_to 'Edit',edit_article_path(@article), class: "btn btn-outline-info"%>    <!--you can check it from rails routes --expanded  in prefix path is written-->
                         <%=link_to 'Delete',article_path(@article), class: "btn btn-outline-danger" ,method: :delete,data: {confirm: "Are You sure?"}%>  <!--- here method shows delete request ,i we don't specified method name it will take as Get request and show currently selected item--->               

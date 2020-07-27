@@ -19,7 +19,7 @@ a {
                     <h5 class="card-title"><%=link_to item.title,article_path(item), class: "text-success"%></h5>
                     <h6 class="card-subtitle mb-2 text-muted"><%=item.description%></h6>
                     <%=link_to 'View',article_path(item), class: "btn btn-outline-success"%>
-                    <% if logged_in? && item.user==current_user %>
+                    <% if logged_in? && (item.user==current_user || current_user.admin?)%>
                       <%=link_to 'Edit',edit_article_path(item), class: "btn btn-outline-info"%>    <!--you can check it from rails routes --expanded  in prefix path is written-->
                       <%=link_to 'Delete',article_path(item), class: "btn btn-outline-danger" ,method: :delete,data: {confirm: "Are You sure?"}%>  <!--- here method shows delete request ,i we don't specified method name it will take as Get request and show currently selected item--->               
                     <%end%>

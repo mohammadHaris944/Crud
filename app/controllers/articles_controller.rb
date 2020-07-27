@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
     before_action :set_article, only: [:show,:edit,:update,:destroy]
     before_action :require_user, except: [:show,:index]
-    before_action :require_same_user, only: [:destroy ,:edit,:update]
+    before_action :require_same_user, only: [:edit,:update,:destroy]
 
 
 
@@ -14,6 +14,8 @@ class ArticlesController < ApplicationController
     def new
         @article = Article.new     #it is just for validation if it is not done then error occur
     end
+    def edit
+    end
     def create
         @article=Article.new(article_params_whitelist)             #  render plain:@article.inspect                      display entered data
         @article.user=current_user
@@ -24,8 +26,7 @@ class ArticlesController < ApplicationController
             render 'new'
         end
     end
-    def edit
-    end
+    
     def update
        if @article.update(article_params_whitelist)
             flash[:notice]="Article updated successfully"
@@ -48,7 +49,7 @@ class ArticlesController < ApplicationController
     end
 
     def require_same_user
-        if @article.user!=current_user
+        if @article.user!=current_user && !current_user.admin?
             flash[:alert]="You can only edit or delete your own article"
             redirect_to @article
         end
