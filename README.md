@@ -1,4 +1,4 @@
-#checking image display bootstrap section 5
+#checking image display bootstrap section 6
   <div class="container" id="home-container">
     <div class="jumbotron text-center text-white text-bold">
       <h1 class="display-4">Articles</h1>
